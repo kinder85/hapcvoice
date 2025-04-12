@@ -38,7 +38,7 @@ class Myinterpreter():
             
             #clientm.publish("haassist", data2)   
 
-            # and delete this part 
+            # and delete or comment this part 
             if data2.find('allume') >= 0 or data2.find('démarre') >= 0 or data2.find('éteins') >= 0 or data2.find('arrête') >= 0 :
                 clientm.publish("haassist", data2)
             else:
