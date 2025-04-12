@@ -1,6 +1,6 @@
         instalation:
         clone this repo 
-        dowload your model here ==> https://alphacephei.com/vosk/models  
+        download your model here ==> https://alphacephei.com/vosk/models  
         install python lib via pip:
             - vosk
             - souddevice
