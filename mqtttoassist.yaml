@@ -1,0 +1,24 @@
+alias: mqtttohaassist
+description: ""
+triggers:
+  - topic: haassist
+    trigger: mqtt
+conditions: []
+actions:
+  - if:
+      - condition: state
+        entity_id: automation.ollamaspeak
+        state: "on"
+    then:
+      - action: automation.turn_off
+        metadata: {}
+        data:
+          stop_actions: true
+        target:
+          entity_id: automation.ollamaspeak
+  - action: conversation.process
+    metadata: {}
+    data:
+      agent_id: conversation.home_assistant
+      text: "{{ trigger.payload }}"
+mode: single
