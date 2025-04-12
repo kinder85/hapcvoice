@@ -1,0 +1,25 @@
+alias: "ollamaspeak"
+description: ""
+triggers:
+  - trigger: conversation
+    command: "{question}"
+conditions: []
+actions:
+  - action: conversation.process
+    metadata: {}
+    data:
+      agent_id: conversation.llama3_2
+      text: "{{trigger.slots.question }}"
+    response_variable: rep
+  - set_conversation_response: "{{ rep.response.speech.plain.speech }}"
+    enabled: true
+  - action: tts.speak
+    metadata: {}
+    data:
+      cache: false
+       media_player_entity_id: your speaker entity
+      #media_player_entity_id: "{{ states('input_select.changeout') }}"
+      message: "{{ rep.response.speech.plain.speech }}"
+    target:
+      entity_id: tts.piper
+mode: single

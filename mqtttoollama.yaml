@@ -1,0 +1,30 @@
+alias: mqtttoollama
+description: ""
+mode: single
+triggers:
+  - topic: ollama
+    trigger: mqtt
+conditions: []
+actions:
+  - if:
+      - condition: state
+        entity_id: automation.ollamaspeak
+        state: "off"
+    then:
+      - action: automation.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: automation.ollamaspeak
+    enabled: true
+  - action: notify.ntfy_notification
+    metadata: {}
+    data:
+      message: "{{ trigger.payload }}"
+    enabled: false
+  - action: conversation.process
+    metadata: {}
+    data:
+      agent_id: conversation.home_assistant
+      text: "{{ trigger.payload }}"
+mode: single
